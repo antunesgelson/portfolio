@@ -37,7 +37,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 export function NavigationMenu() {
     return (
-        <NavegationRoot className="relative z-10">
+        <NavegationRoot className="relative z-10 hidden lg:block">
             <NavigationMenuList>
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Projetos</NavigationMenuTrigger>
