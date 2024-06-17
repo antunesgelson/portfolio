@@ -1,31 +1,37 @@
 'use client'
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import React, { useEffect, useState } from "react";
 
-import { CiLinkedin } from "react-icons/ci";
-import { FaLongArrowAltRight } from "react-icons/fa";
-import { MdOutlineFileDownload } from "react-icons/md";
-import { RiGithubFill } from "react-icons/ri";
+
+import Safe from '@/assets/safe.png';
+
+import BackToTop from "@/components/BackToTop";
+import { Button } from "@/components/ui/button";
 
 import { BsSend } from "react-icons/bs";
-import { FaFigma, FaWhatsapp } from "react-icons/fa";
+import { CiLinkedin } from "react-icons/ci";
+import { FaFigma, FaLongArrowAltRight, FaWhatsapp } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
-import { IoLogoReact } from "react-icons/io5";
+import { IoCloseCircle, IoLogoReact } from "react-icons/io5";
 import { IconType } from "react-icons/lib";
-import { MdAlternateEmail } from "react-icons/md";
+import { LuArrowUpRight } from "react-icons/lu";
+import { MdAlternateEmail, MdOutlineFileDownload } from "react-icons/md";
+import { RiGithubFill } from "react-icons/ri";
 import { SiJavascript, SiNextdotjs, SiTailwindcss, SiTypescript } from "react-icons/si";
 import { TbBrandDiscord } from "react-icons/tb";
 
-import Safe from '@/assets/safe.png';
-import BackToTop from "@/components/BackToTop";
-import { motion, useScroll } from 'framer-motion';
+import {
+  AnimatePresence,
+  MotionValue,
+  motion,
+  useScroll,
+  useTransform
+} from "framer-motion";
 import { useRef } from "react";
-
-import React from "react";
-import { LuArrowUpRight } from "react-icons/lu";
 
 const SIZE_ICON = 23
 const SKILL_TECH_SIZE = 40
+
 type Props = {
   link: string,
   Icon: IconType
@@ -48,8 +54,7 @@ const SocialMediaBagde = ({ link, Icon }: Props) => {
 
 
 const Home = () => {
-
-
+  const [selectedId, setSelectedId] = useState<string | null>('')
 
   const skillsTech = [
     { name: 'Typescript', icon: SiTypescript },
@@ -71,98 +76,212 @@ const Home = () => {
   ]
 
 
-
-
-  const ref = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end end"]
-  })
-
-
-
   const timelineItems = [
-    { date: '24/12/2021', content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem magnam quod tempora incidunt beatae placeat quia provident necessitatibus dolore expedita eos rerum iste dolorum voluptates quisquam molestiae veniam, id optio?' },
-    { date: '24/12/2021', content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem magnam quod tempora incidunt beatae placeat quia provident necessitatibus dolore expedita eos rerum iste dolorum voluptates quisquam molestiae veniam, id optio?' },
-    { date: '24/12/2021', content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem magnam quod tempora incidunt beatae placeat quia provident necessitatibus dolore expedita eos rerum iste dolorum voluptates quisquam molestiae veniam, id optio?' },
+    {
+      role: 'Desenvolvedor Front-end',
+      company: 'Seu Dev',
+      date: 'Jan 2021 - Dez 2024',
+      content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem magnam quod tempora incidunt beatae placeat quia provident necessitatibus dolore expedita eos rerum iste dolorum voluptates quisquam molestiae veniam, id optio?'
+    },
+    {
+      role: 'Desenvolvedor Front-end',
+      company: 'Seu Dev',
+      date: 'Jan 2021 - Dez 2024',
+      content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem magnam quod tempora incidunt beatae placeat quia provident necessitatibus dolore expedita eos rerum iste dolorum voluptates quisquam molestiae veniam, id optio?'
+    },
+    {
+      role: 'Desenvolvedor Front-end',
+      company: 'Seu Dev',
+      date: 'Jan 2021 - Dez 2024',
+      content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem magnam quod tempora incidunt beatae placeat quia provident necessitatibus dolore expedita eos rerum iste dolorum voluptates quisquam molestiae veniam, id optio?'
+    },
 
   ];
+
+  const projects = [
+    {
+      id: '1',
+      title: 'Safe',
+      description: 'O projeto Safe foi especialmente concebido para atender as necessidades dos profissionais de atividade física que colaboram com o Sistema Único de Saúde (SUS). Em uma era em que a tecnologia desempenha um papel crucial em diversos setores, incluindo a saúde e o bem-estar, o Safe se destaca como uma ferramenta valiosa para professores de educação física e outros especialistas na área de movimento e exercício.',
+      technologies: ['Javascript', 'Tailwind CSS'],
+      github: '',
+      link: '',
+      image: Safe
+    },
+    {
+      id: '2',
+      title: 'Safe',
+      description: 'O projeto Safe foi especialmente concebido para atender as necessidades dos profissionais de atividade física que colaboram com o Sistema Único de Saúde (SUS). Em uma era em que a tecnologia desempenha um papel crucial em diversos setores, incluindo a saúde e o bem-estar, o Safe se destaca como uma ferramenta valiosa para professores de educação física e outros especialistas na área de movimento e exercício.',
+      technologies: ['Javascript', 'Tailwind CSS'],
+      github: '',
+      link: '',
+      image: Safe
+    },
+    {
+      id: '3',
+      title: 'Safe',
+      description: 'O projeto Safe foi especialmente concebido para atender as necessidades dos profissionais de atividade física que colaboram com o Sistema Único de Saúde (SUS). Em uma era em que a tecnologia desempenha um papel crucial em diversos setores, incluindo a saúde e o bem-estar, o Safe se destaca como uma ferramenta valiosa para professores de educação física e outros especialistas na área de movimento e exercício.',
+      technologies: ['Javascript', 'Tailwind CSS'],
+      github: '',
+      link: '',
+      image: Safe
+    },
+  ]
+
+
+  function useParallax(value: MotionValue<number>, distance: number) {
+    return useTransform(value, [0, 1], [-distance, distance]);
+  }
+
+
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref });
+  const y = useParallax(scrollYProgress, 300);
+
+
+  useEffect(() => {
+    if (selectedId) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [selectedId]);
 
 
   return (
     <main className="overflow-hidden  ">
-      <section className="grid lg:grid-cols-2 items-center  lg:h-[80vh] 2xl:h-[87vh]  relative w-11/12 lg:w-9/12 mx-auto ">
+
+      {/* Descrition */}
+      <section className="grid lg:grid-cols-2  items-center  lg:h-[82vh] 2xl:h-[88vh]  relative lg:w-9/12 mx-auto p-6 lg:p-0 ">
         <div className="-space-y-1 order-2 lg:order-none ">
-          <h2 className="text-sm">Olá, eu sou o</h2>
-          <h1 className="text-3xl ">Gelson Antunes 👋🏾</h1>
-          <h3 className="text-4xl font-semibold">Desenvolvedor Front-End</h3>
-          <p className="py-4 text-sm text-gray-300">
+          <motion.h2
+            className="text-sm"
+            initial={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            Olá, eu sou o
+          </motion.h2>
+
+          <motion.h3
+            className="text-3xl "
+            initial={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Gelson Antunes 👋🏾
+          </motion.h3>
+
+          <motion.h1
+            className="text-4xl font-semibold"
+            initial={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            Desenvolvedor Front-End
+          </motion.h1>
+
+          <motion.p
+            className="py-4 text-sm text-gray-300"
+            initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.5 }}
+          >
             Com uma experiência de <strong>três anos</strong>, tenho desenvolvido e aprimorado minhas
             competências na criação de <strong>interfaces bonitas e intuitivas</strong> .
             Atualmente, estou engajado em um projeto significativo para o <strong>Ministério da Saúde</strong>, o portal
             <a className="hover:underline underline-offset-2 cursor-pointer font-bold"> Prática Saúde</a>. Minha especialidade abrange uma variedade de tecnologias,
             incluindo <strong>Next</strong>, <strong>React</strong>, <strong>React Native</strong>, <strong>TypeScript</strong>, <strong>JavaScript</strong>, e  <strong>Tailwind</strong>.
-          </p>
+          </motion.p>
 
-          <div className=" flex items-center gap-4">
-            <Button className="flex items-center gap-2 shadow-amber-600 shadow-lg" variant={'primary'}>
-              Baixar CV
-              <MdOutlineFileDownload size={SIZE_ICON} />
-            </Button>
 
-            <Button className="flex items-center gap-2 shadow-stone-500 shadow-lg cursor-auto">
-              Entre em Contato
-              <FaLongArrowAltRight />
-            </Button>
 
-            <a href="https://github.com/antunesgelson"
+          {/* CTA */}
+          <div className=" flex items-center lg:pb-6 lg:gap-4">
+            <motion.div
+              initial={{ opacity: 0, x: -10, }}
+              animate={{ opacity: 1, x: 0, }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <Button className=" items-center gap-2 shadow-amber-600 shadow-lg hidden lg:flex" variant={'primary'}>
+                Baixar CV
+                <MdOutlineFileDownload size={SIZE_ICON} />
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -10, }}
+              animate={{ opacity: 1, x: 0, }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Button className="flex items-center gap-2 shadow-stone-500 shadow-lg cursor-auto">
+                Entre em Contato
+                <FaLongArrowAltRight />
+              </Button>
+            </motion.div>
+
+            <motion.a
               target="_blank"
-              className="group flex flex-col items-center mt-1 hover:text-amber-500  duration-300"
+              href="https://github.com/antunesgelson"
+              className="group flex flex-col items-center ml-3 lg:ml-0 mt-1 hover:text-amber-500  duration-300"
+              initial={{ opacity: 0, x: -20, scale: 0 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
             >
               <RiGithubFill size={SIZE_ICON} />
               <span className="text-[0.7rem] group-hover:underline underline-offset-2">Github</span>
-            </a>
+            </motion.a>
 
-            <a href="https://www.linkedin.com/in/gelsondeveloper/"
+            <motion.a
               target="_blank"
-              className=" group flex flex-col items-center mt-1 hover:text-amber-500 duration-300 group-hover:"
+              href="https://www.linkedin.com/in/gelsondeveloper/"
+              className=" group flex flex-col items-center ml-3  lg:ml-0 mt-1 hover:text-amber-500 duration-300 group-hover:"
+              initial={{ opacity: 0, x: -20, scale: 0 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
             >
               <CiLinkedin size={SIZE_ICON} />
               <span className="text-[0.7rem] group-hover:underline underline-offset-2">Linkedin</span>
-            </a>
+            </motion.a>
           </div>
         </div>
 
+
+        {/* Imagem de Perfil */}
         <motion.div
-          className=" relative flex items-center justify-center  w-10/12  h-full lg:ml-auto order-1 lg:order-none  "
-          initial={{ opacity: 0, scale: 0, filter: 'blur(20px)' }}
-          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          className="flex items-center w-10/12 mx-auto  h-full order-1 lg:order-none   "
+          initial={{ opacity: 0, x: 70, filter: 'blur(20px)' }}
+          animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.7 }}
         >
-          <div className="rounded-full  w-[32vw] h-[32vw]  border-zinc-500 border-2 border-dashed animate-spin absolute  " />
           <Image
-            className="grayscale absolute rounded-full shadow-stone-400 shadow-2xl "
+            className="grayscale  rounded-full shadow-stone-400 shadow-2xl "
             alt="Foto de perfil"
             width={600}
             height={600}
             src="https://github.com/antunesgelson.png"
           />
         </motion.div>
+
       </section>
 
-
-      <div className="bg-amber-500 w-full h-14 text-black flex items-center sticky top-0 ">
+      {/* Banner */}
+      <motion.div
+        className="bg-amber-500 w-full h-14 text-black flex items-center sticky top-0  -z-10 "
+        initial={{ y: 100, }}
+        animate={{ y: 0, }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="whitespace-nowrap flex animate-scroll">
           {Array.from({ length: 60 }).map((_, index) => (
             <span key={index} className="text-sm font-bold tracking-widest inline-block">/ Web / Mobile / Game / Web / Mobile / Game / Web / Mobile / Game / Web / Mobile / Game  </span>
           ))}
         </div>
-      </div>
+      </motion.div>
 
-
-
+      {/* Skills */}
       <section className=" bg-gray-700  ">
-        <div className="w-11/12 lg:w-9/12 mx-auto flex flex-col justify-center lg:h-[100vh] ">
+        <div className="p-6 lg:w-9/12 mx-auto flex flex-col justify-center lg:h-[100vh] ">
           <h3 className="text-amber-500  ">../competências</h3>
 
           <h4 className="text-4xl text-white text-semibold py-4">Conhecimentos</h4>
@@ -184,13 +303,12 @@ const Home = () => {
 
             ))}
           </div>
-
-
         </div>
       </section>
 
+      {/* Timeline */}
       <section className="bg-amber-500">
-        <div className="w-11/12 lg:w-9/12 mx-auto lg:min-h-[100vh] ">
+        <div className="px-6 pb-6 lg:w-9/12 mx-auto lg:min-h-[100vh] ">
 
           <div className="flex flex-col items-center w-full">
             <div className="w-[3px] bg-gray-500 h-full absolute" />
@@ -199,18 +317,20 @@ const Home = () => {
             {timelineItems.map((item, index) => (
               <React.Fragment key={index}>
                 <div className="grid grid-cols-2  relative">
+
                   <motion.div
-                    className={`bg-gray-700 rounded-b-xl  w-[300px] m-10 p-4 border-b-4 ${index % 2 === 0 ? 'order-1 rounded-tl-xl' : ' rounded-tr-xl order-2'}`}
+                    className={`bg-gray-600  p-4 border-b-4 shadow-2xl shadow-black/60 rounded-b-xl lg:m-10 mt-24   lg:w-[300px] ${index % 2 === 0 ? 'order-1 lg:rounded-tl-xl rounded-t-xl lg:rounded-t-none  border-l-4 -mr-44' : ' rounded-tr-xl order-2 rounded-t-xl lg:rounded-t-none   border-r-4 -ml-44'}`}
                     initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30, }}
                     whileInView={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: index % 2 === 0 ? -30 : 30, }}
                     transition={{ duration: 0.8, delay: index * 0.2 }}
                   >
-                    <h3 className="text-white font-semibold">Safe</h3>
-                    <p className="text-gray-200 text-sm">{item.content}</p>
+                    <h3 className="text-white font-semibold">{item.role}</h3>
+                    <h4 className="text-sm text-gray-200">{item.company}</h4>
+                    <p className="text-gray-100 text-sm py-2">{item.content}</p>
                   </motion.div>
 
-                  <motion.h3 className={`text-gray-700 m-10 text-sm font-semibold ${index % 2 === 0 ? 'order-2 mr-auto ' : 'order-1 ml-auto'}`}
+                  <motion.h3 className={`text-gray-700 text-sm font-semibold mt-10 lg:m-10  ${index % 2 === 0 ? 'order-2  ml-8 lg:mr-auto whitespace-nowrap ' : 'order-1   lg:ml-auto'}`}
                     initial={{ opacity: 0, x: index % 2 !== 0 ? -30 : 30, }}
                     whileInView={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: index % 2 !== 0 ? -30 : 30, }}
@@ -221,12 +341,12 @@ const Home = () => {
 
                   <motion.div
                     className="w-10 h-10 rounded-full border-gray-500 border-4 bg-white text-sm flex items-center justify-center absolute   top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
-                    initial={{ opacity: 0,}}
+                    initial={{ opacity: 0, }}
                     whileInView={{ opacity: 1 }}
-     
+
                     transition={{ duration: 0.8, delay: index * 0.2 }}
                   >
-                    Teste
+                    Icon
                   </motion.div>
 
                 </div>
@@ -237,108 +357,136 @@ const Home = () => {
         </div>
       </section>
 
-
-
-
-      <section id="projetos" className="bg-gray-700  h-[100vh]">
-        <div className="w-11/12 lg:w-9/12 mx-auto py-16 ">
+      {/* Projetos */}
+      <section id="projetos" className="bg-gray-700  ">
+        <div className="p-6 lg:w-9/12 mx-auto lg:py-16 ">
           <h3 className="text-amber-500  ">../destaque</h3>
-          <h4 className="text-4xl text-white text-semibold py-4">Projetos</h4>
-          <div className=" h-full grid grid-cols-2 items-center">
-            <div >
-              <motion.h3
-                className="text-4xl py-4 text-white "
-                initial={{ opacity: 0, x: -10, }}
-                whileInView={{ opacity: 1, x: 0, }}
-                exit={{ opacity: 0, x: -10, }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-              >
-                Safe
-              </motion.h3>
-              <div>
-                <motion.h4
-                  className="text-gray-200"
-                  initial={{ opacity: 0, x: -10, }}
-                  whileInView={{ opacity: 1, x: 0, }}
-                  exit={{ opacity: 0, x: -10, }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
-                >
-                  O projeto Safe foi especialmente concebido para atender as necessidades dos profissionais de atividade física que colaboram com o Sistema Único de Saúde (SUS). Em uma era em que a tecnologia desempenha um papel crucial em diversos setores, incluindo a saúde e o bem-estar, o Safe se destaca como uma ferramenta valiosa para professores de educação física e outros especialistas na área de movimento e exercício.
-                </motion.h4>
+          <h4 className="text-4xl text-white text-semibold py-4 mb-14">Projetos</h4>
 
-                <motion.div
-                  className="flex items-center text-amber-400 text-sm gap-2 py-2"
-                  initial={{ opacity: 0, x: -10, }}
+          {projects.map((project, index) => (
+            <div className="h-full  grid lg:grid-cols-2   mb-60">
+              <div className={`h-full  ${index % 2 === 0 ? 'order-1 ' : ' order-2'}`}>
+                <motion.h3
+                  className={`text-4xl py-4 text-white ${index % 2 === 0 ? 'text-start ' : ' text-end'}`}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -10 : 10, }}
                   whileInView={{ opacity: 1, x: 0, }}
-                  exit={{ opacity: 0, x: -10, }}
+                  exit={{ opacity: 0, x: index % 2 === 0 ? -10 : 10, }}
                   transition={{ duration: 0.4, delay: 0.1 }}
                 >
-                  <span className="text-white">Tecnologias:</span>
-                  <motion.span
+                  {project.title}
+                </motion.h3>
+
+                <div>
+                  <motion.h4
+                    className={`text-gray-200 ${index % 2 === 0 ? 'text-start ' : ' text-end'}`}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -10 : 10, }}
+                    whileInView={{ opacity: 1, x: 0, }}
+                    exit={{ opacity: 0, x: index % 2 === 0 ? -10 : 10, }}
+                    transition={{ duration: 0.4, delay: 0.2 }}
+                  >
+                    {project.description}
+                  </motion.h4>
+
+                  <motion.div
+                    className={`flex items-center text-amber-400 text-sm gap-2 py-2 ${index % 2 === 0 ? 'justify-start ' : ' justify-end'}`}
                     initial={{ opacity: 0, x: -10, }}
                     whileInView={{ opacity: 1, x: 0, }}
                     exit={{ opacity: 0, x: -10, }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
                   >
-                    Javascript,
-                  </motion.span>
-                  <motion.span
-                    initial={{ opacity: 0, x: -10, }}
-                    whileInView={{ opacity: 1, x: 0, }}
-                    exit={{ opacity: 0, x: -10, }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
+                    <span className="text-white">Tecnologias:</span>
+
+                    {project.technologies.map((tech, index) => (
+                      <motion.span
+                        initial={{ opacity: 0, x: -10, }}
+                        whileInView={{ opacity: 1, x: 0, }}
+                        exit={{ opacity: 0, x: -10, }}
+                        transition={{ duration: 0.6, delay: 0.3 * index }}
+                      >
+                        {tech},
+                      </motion.span>
+                    ))}
+                  </motion.div>
+
+                  <motion.div
+                    className={`flex items-center gap-2 py-4 ${index % 2 === 0 ? 'justify-start ' : ' justify-end'}`}
+                    initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
+                    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
+                    transition={{ duration: 0.5, }}
                   >
-                    Tailwind CSS
-                  </motion.span>
-                </motion.div>
+                    <Button variant={'ghost'}>
+                      Ver código
+                      <RiGithubFill size={SIZE_ICON} />
+                    </Button>
 
-                <motion.div
-                  className="flex items-center gap-2 py-4"
-                  initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
-                  whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
-                  transition={{ duration: 0.5, }}
-                >
-                  <Button variant={'ghost'}>
-                    Ver código
-                    <RiGithubFill size={SIZE_ICON} />
-                  </Button>
-
-                  <Button className="flex items-center gap-2" variant={'ghost'}>
-                    Visitar site
-                    <LuArrowUpRight size={SIZE_ICON} />
-                  </Button>
-                </motion.div>
-
-
+                    <Button className="flex items-center gap-2" variant={'outline'}>
+                      Visitar site
+                      <LuArrowUpRight size={SIZE_ICON} />
+                    </Button>
+                  </motion.div>
+                </div>
               </div>
+
+              <motion.div
+                ref={ref}
+                onClick={() => setSelectedId(project.id)}
+                className={` text-gray-200 cursor-zoom-in h-full flex  justify-center ${index % 2 === 0 ? 'lg:order-2 ' : ' order-1'} `}
+                initial={{ opacity: 0, x: index % 2 === 0 ? 20 : -20, filter: 'blur(10px)' }}
+                whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, x: index % 2 === 0 ? 20 : -20, filter: 'blur(10px)' }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+              >
+                <Image
+                  alt="Foto do projeto"
+                  width={600}
+                  height={600}
+                  src={project.image}
+                />
+
+                {/* <motion.h2 style={{ y }}>{`#00${project.id}`}</motion.h2> */}
+              </motion.div>
             </div>
-
-            <motion.div
-              className="text-gray-200 cursor-zoom-in"
-              initial={{ opacity: 0, x: 20, filter: 'blur(10px)' }}
-              whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, x: 20, filter: 'blur(10px)' }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-            >
-              <Image
-                alt="Foto do projeto"
-                width={600}
-                height={600}
-                src={Safe}
-              />
-            </motion.div>
+          ))}
 
 
-          </div>
+          {/* Iframe do projeto selecionado */}
+          <AnimatePresence >
+            {selectedId && (
+              <>
+                <div onClick={() => setSelectedId(null)} className="fixed top-0 bottom-0 left-0 right-0 bg-black/50  z-[50] cursor-pointer" />
+                <motion.div
+                  className="fixed top-10 bottom-10 left-5 right-5 lg:top-10 lg:bottom-10 lg:left-10 lg:right-10 z-[100] "
+                  initial={{ opacity: 0, scale: 0.5, filter: 'blur(10px)' }}
+                  animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <iframe className="h-full w-full rounded-lg" src="https://seu.dev.br/" />
 
 
+                  <motion.div
+                    className="absolute -top-10 -right-10 hover:scale-110 transition-transform duration-300"
+                    initial={{ opacity: 0, filter: 'blur(10px)' }}
+                    animate={{ opacity: 1, filter: 'blur(0px)' }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                  >
+                    <Button
+                      className=""
+                      variant={'link'}
+                      onClick={() => setSelectedId(null)}>
+                      <IoCloseCircle className="text-red-600 bg-white rounded-full" size={30} />
+                    </Button>
 
+                  </motion.div>
+                </motion.div>
+
+              </>
+            )}
+          </AnimatePresence>
         </div>
-
       </section>
 
-
+      {/* Contato */}
       <section className="bg-gray-700 pb-16">
         <div className="w-11/12 lg:w-9/12 mx-auto">
           <motion.h3
@@ -386,9 +534,12 @@ const Home = () => {
         </div>
       </section>
 
-      <BackToTop />
+      {!selectedId && <BackToTop />} {/* Apresenta  Botão de voltar ao topo somente se não estiver com iframe em tela */}
+
     </main >
   );
 }
 
 export default Home;
+
+
