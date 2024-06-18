@@ -37,7 +37,7 @@ const Header = () => {
             animate={{ y: 0, }}
             transition={{ duration: 0.6 }}
         >
-            <div className="lg:w-9/12 w-full p-6 lg:p-0 mx-auto flex justify-between items-center  ">
+            <div className="lg:w-8/12  w-full p-6 lg:p-0 mx-auto flex justify-between items-center  ">
                 <span className="text-white text-4xl"><strong className="text-2xl">{'<'}</strong>GA<strong className="text-amber-500 text-2xl">{'/>'}</strong></span>
                 <NavigationMenu />
                 <IoMenu onClick={() => setOpen(true)} className='text-white lg:hidden' size={30} />
