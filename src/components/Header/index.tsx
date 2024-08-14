@@ -20,8 +20,6 @@ const Menu = ({ open, onClose }: Props) => {
                     <SheetTitle className='text-white'>Menu</SheetTitle>
                     <Separator className='bg-gray-300' />
                 </SheetHeader>
-
-
             </SheetContent>
         </Sheet>
     )
@@ -35,18 +33,18 @@ const Header = () => {
             className="h-14 flex items-center bg-gray-700 border-b border-gray-500 shadow-stone-400 shadow-lg   "
             initial={{ y: -100, }}
             animate={{ y: 0, }}
-            transition={{ duration: 0.6 }}
-        >
+            transition={{ duration: 0.6 }}>
             <div className="lg:w-8/12  w-full p-6 lg:p-0 mx-auto flex justify-between items-center  ">
                 <span className="text-white text-4xl"><strong className="text-2xl">{'<'}</strong>GA<strong className="text-amber-500 text-2xl">{'/>'}</strong></span>
                 <NavigationMenu />
-                <IoMenu onClick={() => setOpen(true)} className='text-white lg:hidden' size={30} />
+                <IoMenu
+                    size={30}
+                    onClick={() => setOpen(true)}
+                    className='text-white lg:hidden'
+                />
             </div>
 
-            <Menu
-                open={open}
-                onClose={setOpen}
-            />
+            <Menu open={open} onClose={setOpen} />
         </motion.header>
     )
 }

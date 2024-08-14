@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useCallback, useEffect, useState } from "react"
 import { IoArrowUp } from "react-icons/io5"
 export default function BackToTop() {
-
     const [show, setShow] = useState(false)
 
 
@@ -30,8 +29,7 @@ export default function BackToTop() {
                     initial={{ opacity: 0, x: 10 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 10 }}
-                    transition={{ duration: 0.4 }}
-                >
+                    transition={{ duration: 0.4 }}>
                     <Button variant={'primary'} onClick={scrollToTop} className="p-2 rounded-lg bg-gray-600 group ">
                         <IoArrowUp className="text-white group-hover:text-gray-700" size={20} />
                     </Button>
