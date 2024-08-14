@@ -37,7 +37,7 @@ const Home = () => {
     <main className="overflow-hidden  ">
 
       {/* Descrition */}
-      <section className="grid lg:grid-cols-2  items-center  lg:h-[82vh] 2xl:h-[88vh]  relative p-6 lg:p-0 2xl:w-8/12  lg:w-10/12  mx-auto ">
+      <section className="grid lg:grid-cols-2  items-center  lg:h-[82vh] 2xl:h-[88vh]  relative p-6 lg:p-0 lg:px-32 2xl:px-80   mx-auto bg-white ">
         <div className="-space-y-1 order-2 lg:order-none ">
           <motion.h2
             className="text-lg"
@@ -235,17 +235,20 @@ const Home = () => {
                     whileInView={{ opacity: 1, x: 0, }}
                     exit={{ opacity: 0, x: -10, }}
                     transition={{ duration: 0.4, delay: 0.1 }}>
-                    <span className="text-white">Tecnologias:</span>
-                    {project.technologies.map((tech, i) => (
-                      <motion.span
-                        key={tech + i}
-                        initial={{ opacity: 0, x: -10, }}
-                        whileInView={{ opacity: 1, x: 0, }}
-                        exit={{ opacity: 0, x: -10, }}
-                        transition={{ duration: 0.6, delay: 0.3 * index }}>
-                        {tech},
-                      </motion.span>
-                    ))}
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-white">Tecnologias:</span>
+                      {project.technologies.map((tech, i) => (
+                        <motion.span
+                          key={tech + i}
+                          initial={{ opacity: 0, x: -10, }}
+                          whileInView={{ opacity: 1, x: 0, }}
+                          exit={{ opacity: 0, x: -10, }}
+                          transition={{ duration: 0.6, delay: 0.2 * i }}>
+                          {tech},
+                        </motion.span>
+                      ))}
+                    </div>
+
                   </motion.div>
 
                   <motion.div

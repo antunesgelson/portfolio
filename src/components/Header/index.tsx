@@ -34,7 +34,7 @@ const Header = () => {
             initial={{ y: -100, }}
             animate={{ y: 0, }}
             transition={{ duration: 0.6 }}>
-            <div className="lg:w-8/12  w-full p-6 lg:p-0 mx-auto flex justify-between items-center  ">
+            <div className=" w-full p-6 lg:p-0 2xl:w-8/12  lg:w-10/12  mx-auto flex justify-between items-center  ">
                 <span className="text-white text-4xl"><strong className="text-2xl">{'<'}</strong>GA<strong className="text-amber-500 text-2xl">{'/>'}</strong></span>
                 <NavigationMenu />
                 <IoMenu
