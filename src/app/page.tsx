@@ -1,7 +1,8 @@
 'use client'
 
 import { PROJECTS, SIZE_ICON, SKILLS_TECH, SKILL_TECH_SIZE, TIME_LINE_EXPERIENCE } from '@/data';
-import { AnimatePresence, MotionValue, motion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useScroll } from "framer-motion";
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -17,25 +18,39 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { PiArrowSquareOutLight } from "react-icons/pi";
 import { RiGithubFill } from "react-icons/ri";
 
+
 const Home = () => {
-  const [selectedId, setSelectedId] = useState<number | null>(null)
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref });
-  const y = useParallax(scrollYProgress, 300);
+  const { scrollYProgress } = useScroll()
+  const [selectedId, setSelectedId] = useState<number | null>(null)
+  const paralaxRef = useRef<HTMLElement>(null);
+  const [isParalaxVisible, setIsParalaxVisible] = useState(false);
 
-
-  function useParallax(value: MotionValue<number>, distance: number) {
-    return useTransform(value, [0, 1], [-distance, distance]);
-  }
+  const downloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/download/cv.pdf'; // Caminho atualizado
+    link.download = 'cv.pdf'; // Nome do arquivo que será baixado
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   useEffect(() => {
     if (selectedId) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'auto';
   }, [selectedId]);
 
+  useEffect(() => {                                                                                                                                                 // 50% of the section needs to be visible
+    const observer = new IntersectionObserver(([entry]) => { setIsParalaxVisible(entry.isIntersecting); }, { threshold: 0.1 });
+    if (paralaxRef.current) observer.observe(paralaxRef.current);
+
+    return () => {
+      if (paralaxRef.current) observer.unobserve(paralaxRef.current);
+    };
+  }, [scrollYProgress]);
+
   return (
     <main className="overflow-hidden  ">
-
       {/* Descrition */}
       <section className="grid lg:grid-cols-2  items-center  lg:h-[82vh] 2xl:h-[88vh]  relative p-6 lg:p-0 lg:px-32 2xl:px-80   mx-auto bg-white ">
         <div className="-space-y-1 order-2 lg:order-none ">
@@ -81,7 +96,7 @@ const Home = () => {
               initial={{ opacity: 0, x: -10, }}
               animate={{ opacity: 1, x: 0, }}
               transition={{ duration: 0.6, delay: 0.1 }}>
-              <Button className=" items-center gap-2 shadow-amber-600 shadow-lg hidden lg:flex" variant={'primary'}>
+              <Button onClick={downloadCV} className=" items-center gap-2 shadow-amber-600 shadow-lg hidden lg:flex" variant={'primary'}>
                 Baixar CV
                 <MdOutlineFileDownload size={SIZE_ICON} />
               </Button>
@@ -155,7 +170,7 @@ const Home = () => {
       </motion.div>
 
       {/* Skills */}
-      <section className=" bg-gray-700 py-8  ">
+      <section id="skills" className=" bg-gray-700 py-8  ">
         <div className="p-6 lg:p-0 2xl:w-8/12  lg:w-10/12  mx-auto flex flex-col justify-center lg:min-h-[100vh] ">
           <motion.h3
             className="text-amber-500 text-start  "
@@ -191,7 +206,7 @@ const Home = () => {
       </section>
 
       {/* Projects */}
-      <section id="projetos" className="bg-gray-700 py-8">
+      <section id="projects" className="bg-gray-700 py-8">
         <div className="p-6 lg:p-0 2xl:w-8/12  lg:w-10/12  mx-auto ">
           <motion.h3
             className="text-amber-500  text-end"
@@ -257,14 +272,14 @@ const Home = () => {
                     whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
                     transition={{ duration: 0.5, }}>
-                    <Button asChild variant={'ghost'}>
+                    <Button asChild variant={'ghost'} className="hover:text-amber-500 hover:underline underline-offset-4">
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
                         Ver código
                         <RiGithubFill size={SIZE_ICON} />
                       </a>
                     </Button>
 
-                    <Button asChild className="flex items-center gap-2" variant={'outline'}>
+                    <Button asChild className="flex items-center gap-2 hover:bg-amber-500 hover:text-black hover:border-amber-500 hover:underline underline-offset-4" variant={'outline'}>
                       <a href={project.link} target="_blank" rel="noopener noreferrer">
                         Visitar site
                         <PiArrowSquareOutLight size={SIZE_ICON} />
@@ -288,7 +303,6 @@ const Home = () => {
                   src={project.image}
                 />
 
-                {/* <motion.h2 style={{ y }}>{`#00${project.id}`}</motion.h2> */}
               </motion.div>
               {/* Iframe do projeto selecionado */}
               <AnimatePresence >
@@ -320,11 +334,38 @@ const Home = () => {
               </AnimatePresence>
             </div>
           ))}
+
         </div>
       </section>
 
+
+      {/* Projects Slide */}
+      {/* <section
+        ref={paralaxRef}
+        className={`transition-all duration-700 `}>
+
+        <div className="p-6 lg:p-0 2xl:w-8/12  lg:w-10/12  mx-auto ">
+          <motion.h3
+            className="text-amber-500  text-end"
+            initial={{ opacity: 0, x: 20, }}
+            whileInView={{ opacity: 1, x: 0, }}
+            exit={{ opacity: 0, x: 20, }}
+            transition={{ duration: 0.4, delay: 0.2 }}>
+            ../destaque
+          </motion.h3>
+
+          <div className="flex items-center justify-between lg:gap-10 gap-3 lg:pb-8 ">
+            <div className="w-full  bg-gray-400 h-[1px]" />
+            <h4 className="lg:text-4xl text-3xl text-white text-semibold py-4 font-bold">Projetos</h4>
+          </div>
+
+          <Paralax />
+
+        </div>
+      </section> */}
+
       {/* Experience */}
-      <section className="bg-amber-500 py-8">
+      <section id="experience" className="bg-amber-500 py-8">
         <div className="p-6 lg:p-0 2xl:w-8/12  lg:w-10/12  mx-auto flex flex-col  lg:min-h-[100vh] ">
           <motion.h3
             className="text-gray-500 font-semibold text-start"

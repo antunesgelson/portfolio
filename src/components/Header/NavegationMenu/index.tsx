@@ -18,46 +18,32 @@ const components: { title: string; href: string; description: string }[] = [
 
     {
         title: "Projetos",
-        href: "/docs/primitives/scroll-area",
-        description: "Visually or semantically separates content.",
+        href: "/",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa eligendi iure harum fuga expedita dignissimos quod corporis voluptates qui, temporibus aliquam quisquam, officiis sit unde molestiae adipisci pariatur perspiciatis",
     },
     {
         title: "Sobre",
-        href: "/docs/primitives/tabs",
-        description:
-            "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+        href: "/",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa eligendi iure harum fuga expedita dignissimos quod corporis voluptates qui, temporibus aliquam quisquam, officiis sit unde molestiae adipisci pariatur perspiciatis",
     },
     {
         title: "Contato",
-        href: "/docs/primitives/tooltip",
-        description:
-            "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+        href: "/",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa eligendi iure harum fuga expedita dignissimos quod corporis voluptates qui, temporibus aliquam quisquam, officiis sit unde molestiae adipisci pariatur perspiciatis",
     },
 ]
+
+const handleSmoothScroll = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: string) => {
+    event.preventDefault();
+    const targetElement = document.getElementById(id);
+    if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+};
 
 export function NavigationMenu() {
     return (
         <NavegationRoot className="relative z-10 hidden lg:block">
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Projetos</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ul className="grid gap-3 p-4 md:w-[300px] lg:w-[400px] ">
-
-                            <ListItem href="/docs" title="Introduction">
-                                Re-usable components built using Radix UI and Tailwind CSS.
-                            </ListItem>
-                            <ListItem href="/docs/installation" title="Installation">
-                                How to install dependencies and structure your app.
-                            </ListItem>
-                            <ListItem href="/docs/primitives/typography" title="Typography">
-                                Styles for headings, paragraphs, lists...etc
-                            </ListItem>
-                        </ul>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-
                     <NavigationMenuTrigger>Sobre</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid gap-3 p-4 md:w-[300px] lg:w-[400px] ">
@@ -65,20 +51,36 @@ export function NavigationMenu() {
                                 <ListItem
                                     key={component.title}
                                     title={component.title}
-                                    href={component.href}
-                                >
+                                    href={component.href}>
                                     {component.description}
                                 </ListItem>
                             ))}
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
+
                 <NavigationMenuItem>
-                    <Link href="/docs" legacyBehavior passHref>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Contato
-                        </NavigationMenuLink>
-                    </Link>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()} onClick={(e) => handleSmoothScroll(e, 'skills')}>
+                        Conhecimento
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()} onClick={(e) => handleSmoothScroll(e, 'projects')}>
+                        Projetos
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()} onClick={(e) => handleSmoothScroll(e, 'experience')}>
+                        Experiência
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()} onClick={(e) => handleSmoothScroll(e, 'contact')}>
+                        Contato
+                    </NavigationMenuLink>
                 </NavigationMenuItem>
             </NavigationMenuList>
         </NavegationRoot>

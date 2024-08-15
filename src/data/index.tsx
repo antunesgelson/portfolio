@@ -23,13 +23,12 @@ export const SOCIAL_MEDIA_BAGDE = [
     { name: 'E-mail', icon: MdAlternateEmail, link: 'mailto:gelsondeveloper@hotmail.com?subject=Contato%20via%20Portfólio' },
 ]
 
-
 export const PROJECTS = [
     {
         id: 1,
         title: 'Prática Saúde',
         description: 'O projeta visa apoiar profissionais da saúde, gestores do SUS, pesquisadores e estudantes. Ele oferece um repositório diversificado que inclui documentos variados, estudos de pesquisa e cursos online. A plataforma visa facilitar o acesso a informações relevantes e materiais educativos, contribuindo para a melhoria contínua dos serviços de saúde',
-        technologies: ['Javascript', 'React', 'Tailwind', 'Next'],
+        technologies: ['Typescript', 'Next Js', 'Tailwind CSS'],
         github: 'https://github.com/antunesgelson/pratica-saude-front-end',
         link: 'https://praticasaude.ufsc.br/',
         image: Pratica
@@ -47,7 +46,7 @@ export const PROJECTS = [
         id: 3,
         title: 'Empório Urubici',
         description: 'O projeto Safe foi especialmente concebido para atender as necessidades dos profissionais de atividade física que colaboram com o Sistema Único de Saúde (SUS). Em uma era em que a tecnologia desempenha um papel crucial em diversos setores, incluindo a saúde e o bem-estar, o Safe se destaca como uma ferramenta valiosa para professores de educação física e outros especialistas na área de movimento e exercício.',
-        technologies: ['Javascript', 'React', 'Tailwind', 'Next', 'Next-Auth'],
+        technologies: ['Typescript', 'Next Js', 'Next-Auth', 'Tailwind CSS'],
         github: 'https://github.com/antunesgelson/eu-delivery',
         link: 'https://emporiourubici.com/',
         image: Pratica
@@ -56,13 +55,12 @@ export const PROJECTS = [
         id: 4,
         title: 'Corte Ai',
         description: 'O projeto Safe foi especialmente concebido para atender as necessidades dos profissionais de atividade física que colaboram com o Sistema Único de Saúde (SUS). Em uma era em que a tecnologia desempenha um papel crucial em diversos setores, incluindo a saúde e o bem-estar, o Safe se destaca como uma ferramenta valiosa para professores de educação física e outros especialistas na área de movimento e exercício.',
-        technologies: ['Javascript', 'React', 'Tailwind', 'Next', 'Next-Auth'],
-        github: 'https://github.com/antunesgelson/eu-delivery',
-        link: 'https://emporiourubici.com/',
+        technologies: ['Typescript', 'Next Js', 'Next-Auth', 'Tailwind CSS'],
+        github: 'https://github.com/antunesgelson/corte-ai',
+        link: 'https://corteai.com/',
         image: Pratica
     },
 ]
-
 
 export const TIME_LINE_EXPERIENCE = [
     {
@@ -71,7 +69,7 @@ export const TIME_LINE_EXPERIENCE = [
         role: 'Desenvolvedor Front-end',
         date: 'Jul 2024 - Abr 2025',
         content: "O projeta visa apoiar profissionais da saúde, gestores do SUS, pesquisadores e estudantes. Ele oferece um repositório diversificado que inclui documentos variados, estudos de pesquisa e cursos online. A plataforma visa facilitar o acesso a informações relevantes e materiais educativos, contribuindo para a melhoria contínua dos serviços de saúde",
-        technology: ['Javascript', 'React', 'Tailwind', 'Next']
+        technology: ['Typescript', 'Next Js', 'Tailwind CSS']
     },
 
 ];

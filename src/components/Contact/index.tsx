@@ -22,7 +22,7 @@ const SocialMediaBagde = ({ link, Icon }: Props) => {
 }
 const Contact = () => {
     return (
-        <section className="bg-gray-700 flex justify-center items-center 2xl:min-h-[50vh] lg:min-h-[70vh] " >
+        <section id="contact" className="bg-gray-700 flex justify-center items-center 2xl:min-h-[50vh] lg:min-h-[70vh] " >
             <div className="p-6 lg:p-0 2xl:w-8/12  lg:w-10/12  mx-auto ">
                 <motion.h3
                     className="text-amber-500  text-end "
