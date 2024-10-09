@@ -224,7 +224,7 @@ const Home = () => {
 
           {PROJECTS.map((project, index) => (
             <div key={project.id} className="h-full  grid lg:grid-cols-2   ">
-              <div className={`h-full  ${index % 2 === 0 ? 'order-1 ' : ' order-2'}`}>
+              <div className={`h-full relative  ${index % 2 === 0 ? 'order-1 ' : ' order-2'}`}>
                 <motion.h3
                   className={`lg:text-4xl text-2xl lg:py-4 py-1 text-white ${index % 2 === 0 ? 'text-start ' : ' text-end'}`}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -10 : 10, }}
@@ -233,6 +233,12 @@ const Home = () => {
                   transition={{ duration: 0.4, delay: 0.1 }}>
                   {project.title}
                 </motion.h3>
+                {project.status &&
+                  <button className={`text-white bg-red-600 rounded-full px-2  text-xs absolute lg:top-14 -top-3 ${index % 2 === 0 ? 'left-0 ' : ' right-0'} `}>
+                    {project.status}
+                  </button>
+                }
+
 
                 <div>
                   <motion.h4
@@ -422,11 +428,17 @@ const Home = () => {
                   </motion.h3>
 
                   <motion.div
-                    className="w-12 h-12 rounded-full border-gray-500 border-4 bg-white text-sm flex items-center justify-center absolute   top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+                    className="w-12 h-12 rounded-full border-4 bg-white text-sm flex items-center justify-center absolute   top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
                     initial={{ opacity: 0, }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: index * 0.2 }}>
-                    Icon
+                    <Image
+                      className="  rounded-full  shadow-2xl  w-full h-full "
+                      alt="Logotipo"
+                      width={600}
+                      height={600}
+                      src={item.logo}
+                    />
                   </motion.div>
 
                 </div>

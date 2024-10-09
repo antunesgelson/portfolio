@@ -1,5 +1,6 @@
+import Emporio from '@/assets/emporio.png';
+import Logo from '@/assets/logo.png';
 import Pratica from '@/assets/pratica-saude.png';
-import Safe from '@/assets/safe.png';
 
 import { CiLinkedin } from "react-icons/ci";
 import { FaFigma, FaWhatsapp } from "react-icons/fa";
@@ -31,41 +32,44 @@ export const PROJECTS = [
         technologies: ['Typescript', 'Next Js', 'Tailwind CSS'],
         github: 'https://github.com/antunesgelson/pratica-saude-front-end',
         link: 'https://praticasaude.ufsc.br/',
-        image: Pratica
+        image: Pratica,
+        status: null
     },
-    {
-        id: 2,
-        title: 'Safe',
-        description: 'O projeto Safe foi especialmente concebido para atender as necessidades dos profissionais de atividade física que colaboram com o Sistema Único de Saúde (SUS). Em uma era em que a tecnologia desempenha um papel crucial em diversos setores, incluindo a saúde e o bem-estar, o Safe se destaca como uma ferramenta valiosa para professores de educação física e outros especialistas na área de movimento e exercício.',
-        technologies: ['Javascript', 'Tailwind CSS'],
-        github: 'https://github.com/antunesgelson/',
-        link: 'https://praticasaude.ufsc.br/',
-        image: Safe
-    },
+    // {
+    //     id: 2,
+    //     title: 'Safe',
+    //     description: 'O projeto Safe foi especialmente concebido para atender as necessidades dos profissionais de atividade física que colaboram com o Sistema Único de Saúde (SUS). Em uma era em que a tecnologia desempenha um papel crucial em diversos setores, incluindo a saúde e o bem-estar, o Safe se destaca como uma ferramenta valiosa para professores de educação física e outros especialistas na área de movimento e exercício.',
+    //     technologies: ['Javascript', 'Tailwind CSS'],
+    //     github: 'https://github.com/antunesgelson/',
+    //     link: 'https://praticasaude.ufsc.br/',
+    //     image: Safe,
+    //     status: null
+    // },
     {
         id: 3,
         title: 'Empório Urubici',
-        description: 'O projeto Safe foi especialmente concebido para atender as necessidades dos profissionais de atividade física que colaboram com o Sistema Único de Saúde (SUS). Em uma era em que a tecnologia desempenha um papel crucial em diversos setores, incluindo a saúde e o bem-estar, o Safe se destaca como uma ferramenta valiosa para professores de educação física e outros especialistas na área de movimento e exercício.',
+        description: "O Empório Urubici foi desenvolvido para oferecer uma solução eficiente e moderna de delivery, especializada em café da manhã. O projeto visa proporcionar uma experiência rápida e agradável tanto para os clientes quanto para a equipe operacional, utilizando tecnologia de ponta para otimizar todo o processo de pedidos e entregas.",
         technologies: ['Typescript', 'Next Js', 'Next-Auth', 'Tailwind CSS'],
         github: 'https://github.com/antunesgelson/eu-delivery',
-        link: 'https://emporiourubici.com/',
-        image: Pratica
+        link: 'https://eudelivery.seu.dev.br/',
+        image: Emporio,
+        status: 'em desenvolvimento.'
     },
-    {
-        id: 4,
-        title: 'Corte Ai',
-        description: 'O projeto Safe foi especialmente concebido para atender as necessidades dos profissionais de atividade física que colaboram com o Sistema Único de Saúde (SUS). Em uma era em que a tecnologia desempenha um papel crucial em diversos setores, incluindo a saúde e o bem-estar, o Safe se destaca como uma ferramenta valiosa para professores de educação física e outros especialistas na área de movimento e exercício.',
-        technologies: ['Typescript', 'Next Js', 'Next-Auth', 'Tailwind CSS'],
-        github: 'https://github.com/antunesgelson/corte-ai',
-        link: 'https://corteai.com/',
-        image: Pratica
-    },
+    // {
+    //     id: 4,
+    //     title: 'Corte Ai',
+    //     description: 'O projeto Safe foi especialmente concebido para atender as necessidades dos profissionais de atividade física que colaboram com o Sistema Único de Saúde (SUS). Em uma era em que a tecnologia desempenha um papel crucial em diversos setores, incluindo a saúde e o bem-estar, o Safe se destaca como uma ferramenta valiosa para professores de educação física e outros especialistas na área de movimento e exercício.',
+    //     technologies: ['Typescript', 'Next Js', 'Next-Auth', 'Tailwind CSS'],
+    //     github: 'https://github.com/antunesgelson/corte-ai',
+    //     link: 'https://corteai.com/',
+    //     image: Pratica
+    // },
 ]
 
 export const TIME_LINE_EXPERIENCE = [
     {
         company: 'Prática Saúde',
-        logo: '',
+        logo: Logo,
         role: 'Desenvolvedor Front-end',
         date: 'Jul 2024 - Abr 2025',
         content: "O projeta visa apoiar profissionais da saúde, gestores do SUS, pesquisadores e estudantes. Ele oferece um repositório diversificado que inclui documentos variados, estudos de pesquisa e cursos online. A plataforma visa facilitar o acesso a informações relevantes e materiais educativos, contribuindo para a melhoria contínua dos serviços de saúde",
