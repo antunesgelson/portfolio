@@ -223,8 +223,8 @@ const Home = () => {
           </div>
 
           {PROJECTS.map((project, index) => (
-            <div key={project.id} className="h-full  grid lg:grid-cols-2   ">
-              <div className={`h-full relative  ${index % 2 === 0 ? 'order-1 ' : ' order-2'}`}>
+            <div key={project.id} className="h-full  grid lg:grid-cols-2 place-items-center   ">
+              <div className={`h-full relative flex flex-col justify-center  ${index % 2 === 0 ? 'order-1 ' : ' order-2'}`}>
                 <motion.h3
                   className={`lg:text-4xl text-2xl lg:py-4 py-1 text-white ${index % 2 === 0 ? 'text-start ' : ' text-end'}`}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -10 : 10, }}
@@ -234,7 +234,7 @@ const Home = () => {
                   {project.title}
                 </motion.h3>
                 {project.status &&
-                  <button className={`text-white bg-red-600 rounded-full px-2  text-xs absolute lg:top-14 -top-3 ${index % 2 === 0 ? 'left-0 ' : ' right-0'} `}>
+                  <button className={`text-white bg-red-600 rounded-full px-2 my-1 text-xs absolute lg:top-1/3 -top-3 ${index % 2 === 0 ? 'left-0 ' : ' right-0'} `}>
                     {project.status}
                   </button>
                 }

@@ -13,6 +13,28 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
+
+const Menu: { title: string; href: string }[] = [
+
+    {
+        title: "Conhecimento",
+        href: "skills",
+    },
+    {
+        title: "Projetos",
+        href: "projects"
+    },
+    {
+        title: "Experiência",
+        href: "experience"
+    },
+    {
+        title: "Contato",
+        href: "contact"
+    },
+]
+
 
 const components: { title: string; href: string; description: string }[] = [
 
@@ -43,45 +65,47 @@ export function NavigationMenu() {
     return (
         <NavegationRoot className="relative z-10 hidden lg:block">
             <NavigationMenuList>
-                <NavigationMenuItem>
-                    <NavigationMenuTrigger>Sobre</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ul className="grid gap-3 p-4 md:w-[300px] lg:w-[400px] ">
-                            {components.map((component) => (
-                                <ListItem
-                                    key={component.title}
-                                    title={component.title}
-                                    href={component.href}>
-                                    {component.description}
-                                </ListItem>
-                            ))}
-                        </ul>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
+                <motion.div
+                    initial={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    transition={{ duration: 0.5 }}>
+                    <NavigationMenuItem>
+                        <NavigationMenuTrigger>Sobre</NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                            <ul className="grid gap-3 p-4 md:w-[300px] lg:w-[400px] ">
+                                {components.map((component, index) => (
+                                    <motion.div
+                                        key={component.title}
+                                        initial={{ opacity: 0, y: -20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: index * 0.1, duration: 0.5 }}>
+                                        <ListItem
+                                            title={component.title}
+                                            href={component.href}>
+                                            {component.description}
+                                        </ListItem>
+                                    </motion.div>
+                                ))}
+                            </ul>
+                        </NavigationMenuContent>
+                    </NavigationMenuItem>
+                </motion.div>
 
-                <NavigationMenuItem>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()} onClick={(e) => handleSmoothScroll(e, 'skills')}>
-                        Conhecimento
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
+                {Menu.map((menu, index) => (
+                    <motion.div
+                        key={menu.href}
+                        initial={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                        transition={{ delay: index * 0.1, duration: 0.5 }}>
+                        <NavigationMenuItem >
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()} onClick={(e) => handleSmoothScroll(e, menu.href)}>
+                                {menu.title}
+                            </NavigationMenuLink>
+                        </NavigationMenuItem>
+                    </motion.div>
+                ))}
 
-                <NavigationMenuItem>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()} onClick={(e) => handleSmoothScroll(e, 'projects')}>
-                        Projetos
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()} onClick={(e) => handleSmoothScroll(e, 'experience')}>
-                        Experiência
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()} onClick={(e) => handleSmoothScroll(e, 'contact')}>
-                        Contato
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
             </NavigationMenuList>
         </NavegationRoot>
     )

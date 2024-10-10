@@ -71,17 +71,31 @@ const Header = () => {
     const [open, setOpen] = useState(false);
 
     return (
-        <motion.header
-            className="h-14 flex items-center bg-gray-700 border-b border-gray-500 shadow-stone-400 shadow-lg  z-10   "
-            initial={{ y: -100, }}
-            animate={{ y: 0, }}
-            transition={{ duration: 0.6 }}>
-            <div className=" w-full p-6 lg:p-0 2xl:w-8/12  lg:w-10/12  mx-auto flex justify-between items-center  ">
-                <span className="text-white text-4xl">
-                    <strong className="text-2xl">{'<'}</strong>
-                    GA
-                    <strong className="text-amber-500 text-2xl">{'/>'}</strong>
-                    </span>
+        <header
+            className="h-14 flex items-center bg-gray-700 border-b border-gray-500 shadow-stone-400 shadow-lg z-10">
+            <div className=" w-full p-6 lg:p-0 2xl:w-8/12  lg:w-10/12  mx-auto flex justify-between items-center">
+                <div className="text-white text-4xl flex  items-end">
+                    <motion.div
+                        className="text-2xl font-bold"
+                        initial={{ x: -100, filter: 'blur(50px)' }}
+                        animate={{ x: 0, filter: 'blur(0px)' }}
+                        transition={{ duration: 0.3 }}>
+                        {'<'}
+                    </motion.div>
+                    <motion.span
+                        initial={{ y: -50, filter: 'blur(10px)' }}
+                        animate={{ y: 0, filter: 'blur(0px)' }}
+                        transition={{ duration: 0.5 }}>
+                        GA
+                    </motion.span>
+                    <motion.div
+                        className="text-amber-500 text-2xl font-bold"
+                        initial={{ x: 100, filter: 'blur(50px)' }}
+                        animate={{ x: 0, filter: 'blur(0px)' }}
+                        transition={{ duration: 0.5, delay: 0.3 }}>
+                        {'/>'}
+                    </motion.div>
+                </div>
                 <NavigationMenu />
                 <IoMenu
                     size={30}
@@ -91,7 +105,7 @@ const Header = () => {
             </div>
 
             <Menu open={open} onClose={setOpen} />
-        </motion.header>
+        </header>
     )
 }
 
