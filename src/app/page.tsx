@@ -428,7 +428,7 @@ const Home = () => {
                   </motion.h3>
 
                   <motion.div
-                    className="w-12 h-12 rounded-full border-4 bg-white text-sm flex items-center justify-center absolute   top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+                    className="w-12 h-12 rounded-full border-2  bg-white text-sm flex items-center justify-center absolute   top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
                     initial={{ opacity: 0, }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: index * 0.2 }}>
