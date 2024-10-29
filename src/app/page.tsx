@@ -49,6 +49,10 @@ const Home = () => {
     };
   }, [scrollYProgress]);
 
+  useEffect(() => {
+    console.log('caiu aqui')
+  }, []);
+
   return (
     <main className="overflow-hidden  ">
       {/* Descrition */}
