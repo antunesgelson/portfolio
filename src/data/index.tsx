@@ -1,5 +1,6 @@
 import Emporio from '@/assets/emporio.png';
 import Logo from '@/assets/logo.png';
+import LoveYou from '@/assets/loveYou.png';
 import Pratica from '@/assets/pratica-saude.png';
 
 import { CiLinkedin } from "react-icons/ci";
@@ -33,6 +34,16 @@ export const PROJECTS = [
         github: 'https://github.com/antunesgelson/pratica-saude-front-end',
         link: 'https://praticasaude.ufsc.br/',
         image: Pratica,
+        status: null
+    },
+    {
+        id: 2,
+        title: 'LoveYou',
+        description: 'A LoveYou é uma plataforma inovadora que permite criar lembretes virtuais interativos para celebrar relacionamentos. Com recursos personalizáveis, os usuários podem adicionar músicas especiais, mensagens únicas e momentos memoráveis, criando uma experiência digital afetiva e única. Ideal para casais que desejam guardar e compartilhar recordações de forma criativa e emocionante.',
+        technologies: ['Typescript', 'Next Js', 'Tailwind CSS'],
+        github: 'https://github.com/antunesgelson/loveyou',
+        link: 'https://loveyou.vc/',
+        image: LoveYou,
         status: null
     },
     // {
